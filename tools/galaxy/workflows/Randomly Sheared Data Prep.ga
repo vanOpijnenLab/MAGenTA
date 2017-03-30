@@ -1,0 +1,285 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "Randomly Sheared Data Prep", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "Input Dataset Collection"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset collection", 
+            "outputs": [], 
+            "position": {
+                "left": 231.5, 
+                "top": 218
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"collection_type\": \"list\", \"name\": \"Input Dataset Collection\"}", 
+            "tool_version": null, 
+            "type": "data_collection_input", 
+            "user_outputs": [], 
+            "uuid": "af6758a4-54ff-4df8-a491-6c314f4231fb"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Cutadapt", 
+            "outputs": [
+                {
+                    "name": "report", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "paired_output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "rest_output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "wild_output", 
+                    "type": "input"
+                }, 
+                {
+                    "name": "too_short_output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "too_long_output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "untrimmed_output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "untrimmed_paired_output", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "info_file", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 200, 
+                "top": 292
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input | basename}_clipped.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/1.6", 
+            "tool_state": "{\"count\": \"\\\"1\\\"\", \"error_rate\": \"\\\"0.0\\\"\", \"match_read_wildcards\": \"\\\"False\\\"\", \"paired_end\": \"{\\\"paired_end_boolean\\\": \\\"False\\\", \\\"__current_case__\\\": 1}\", \"__page__\": 0, \"output_params\": \"{\\\"output_type\\\": \\\"default\\\", \\\"__current_case__\\\": 0}\", \"__rerun_remap_job_id__\": null, \"overlap\": \"\\\"3\\\"\", \"front_adapters\": \"[]\", \"input\": \"null\", \"no_indels\": \"\\\"False\\\"\", \"anywhere_adapters\": \"[]\", \"adapters\": \"[{\\\"__index__\\\": 0, \\\"adapter_source\\\": {\\\"adapter\\\": \\\"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\\\", \\\"adapter_source_list\\\": \\\"user\\\", \\\"__current_case__\\\": 0, \\\"adapter_name\\\": \\\"\\\"}}]\", \"read_modification_params\": \"{\\\"read_modification\\\": \\\"none\\\", \\\"__current_case__\\\": 0}\", \"output_filtering_options\": \"{\\\"min\\\": \\\"1\\\", \\\"max\\\": \\\"0\\\", \\\"discard_untrimmed\\\": \\\"True\\\", \\\"mask_adapter\\\": \\\"False\\\", \\\"no_trim\\\": \\\"False\\\", \\\"__current_case__\\\": 1, \\\"output_filtering\\\": \\\"filter\\\", \\\"discard\\\": \\\"False\\\"}\"}", 
+            "tool_version": "1.6", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "3ab47c13-15a1-4675-aabd-b07c0c1f085c"
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {
+                "input_file": {
+                    "id": 1, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "FASTQ Groomer", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "fastqsanger"
+                }
+            ], 
+            "position": {
+                "left": 203, 
+                "top": 824
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_file": {
+                    "action_arguments": {
+                        "newname": "#{input | basename}_groomed.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_file"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastq_groomer/fastq_groomer/1.0.4", 
+            "tool_state": "{\"__page__\": 0, \"input_type\": \"\\\"sanger\\\"\", \"__rerun_remap_job_id__\": null, \"options_type\": \"{\\\"options_type_selector\\\": \\\"basic\\\", \\\"__current_case__\\\": 0}\", \"input_file\": \"null\"}", 
+            "tool_version": "1.0.4", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "90602684-976b-4f8e-aff8-2ba8149ca573"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {
+                "input_file": {
+                    "id": 2, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Filter FASTQ", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 253, 
+                "top": 975
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_file": {
+                    "action_arguments": {
+                        "newname": "#{input_file | basename}_filtered.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_file"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastq_filter/fastq_filter/1.0.0", 
+            "tool_state": "{\"__page__\": 0, \"max_num_deviants\": \"\\\"0\\\"\", \"paired_end\": \"\\\"False\\\"\", \"input_file\": \"null\", \"__rerun_remap_job_id__\": null, \"min_size\": \"\\\"1\\\"\", \"max_quality\": \"\\\"0.0\\\"\", \"min_quality\": \"\\\"0.0\\\"\", \"max_size\": \"\\\"0\\\"\", \"fastq_filters\": \"[]\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "4473eb93-b18d-41e4-aba3-26be22990d1d"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {
+                "input": {
+                    "id": 3, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "FASTQ Collapser", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "fasta"
+                }
+            ], 
+            "position": {
+                "left": 247.91668701171875, 
+                "top": 1112.4166870117188
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input | basename}_collapsed.fasta"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "fastq collapser", 
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "a4402471-13e2-49ce-9971-6982f969ec05"
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {
+                "singlePaired|sInput1": {
+                    "id": 4, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Enhanced Map with Bowtie for Illumina", 
+            "outputs": [
+                {
+                    "name": "outputM", 
+                    "type": "map"
+                }, 
+                {
+                    "name": "outputS", 
+                    "type": "sam"
+                }, 
+                {
+                    "name": "output_suppressed_reads_l", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "output_suppressed_reads_r", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "output_unmapped_reads_l", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "output_unmapped_reads_r", 
+                    "type": "fastq"
+                }
+            ], 
+            "position": {
+                "left": 202.91668701171875, 
+                "top": 1234.4166870117188
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutputM": {
+                    "action_arguments": {
+                        "newname": "#{sInput1 | basename}_mapped.map"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "outputM"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "enhanced_bowtie_wrapper", 
+            "tool_state": "{\"suppressHeader\": \"\\\"False\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"refGenomeSource\": \"{\\\"genomeSource\\\": \\\"history\\\", \\\"ownFile\\\": null, \\\"__current_case__\\\": 1, \\\"indexParams\\\": {\\\"indexSettings\\\": \\\"indexPreSet\\\", \\\"__current_case__\\\": 0}}\", \"singlePaired\": \"{\\\"sInput1\\\": null, \\\"sParams\\\": {\\\"sForwardAlign\\\": \\\"forward\\\", \\\"sTrimH\\\": \\\"0\\\", \\\"sTrimL\\\": \\\"0\\\", \\\"sUnmappedFile\\\": \\\"True\\\", \\\"sSettingsType\\\": \\\"full\\\", \\\"filetype\\\": \\\"f\\\", \\\"sSuppressAlign\\\": \\\"1\\\", \\\"sAlignLimit\\\": \\\"-1\\\", \\\"sMaxFile\\\": \\\"False\\\", \\\"outtype\\\": \\\"\\\", \\\"sReverseAlign\\\": \\\"reverse\\\", \\\"__current_case__\\\": 1, \\\"sSkip\\\": \\\"0\\\", \\\"sBestOption\\\": {\\\"sTryHardOption\\\": {\\\"sTryHard\\\": \\\"doTryHard\\\", \\\"__current_case__\\\": 1}, \\\"sdStrata\\\": \\\"noStrata\\\", \\\"sBest\\\": \\\"doBest\\\", \\\"__current_case__\\\": 1}, \\\"alignModeOption\\\": {\\\"sMismatchSeed\\\": \\\"1\\\", \\\"sMismatchQual\\\": \\\"70\\\", \\\"sRounding\\\": \\\"round\\\", \\\"__current_case__\\\": 0, \\\"alignMode\\\": \\\"nMode\\\", \\\"sSeedLen\\\": \\\"28\\\"}, \\\"sOffrate\\\": \\\"-1\\\", \\\"sSeed\\\": \\\"-1\\\", \\\"sAllValAlignsOption\\\": {\\\"sAllValAligns\\\": \\\"noAllValAligns\\\", \\\"sValAlign\\\": \\\"1\\\", \\\"__current_case__\\\": 0}}, \\\"sPaired\\\": \\\"single\\\", \\\"__current_case__\\\": 0}\"}", 
+            "tool_version": "1.1.3", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "555f9cf3-57ee-4bde-81ef-ad374b58066e"
+        }
+    }, 
+    "uuid": "2e9b4573-3c80-44c9-a420-9d94327c649d"
+}

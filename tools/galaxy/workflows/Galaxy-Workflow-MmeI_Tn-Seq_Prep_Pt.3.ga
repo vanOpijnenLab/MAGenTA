@@ -1,0 +1,202 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "MmeI Tn-Seq Prep Pt.3", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "Input Dataset Collection"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset collection", 
+            "outputs": [], 
+            "position": {
+                "left": 403, 
+                "top": 230
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"collection_type\": \"list\", \"name\": \"Input Dataset Collection\"}", 
+            "tool_version": null, 
+            "type": "data_collection_input", 
+            "user_outputs": [], 
+            "uuid": "998d811f-0c27-4857-a3be-32e869b9b4b9"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {
+                "input1": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Trim", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 417.5, 
+                "top": 327
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "#{input1 | basename}_trimmed.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "trimmer", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"end\": \"\\\"0\\\"\", \"fastq\": \"\\\"-q\\\"\", \"ignore\": \"null\", \"start\": \"\\\"7\\\"\", \"__rerun_remap_job_id__\": null, \"col\": \"\\\"0\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "fc34c332-b64a-491b-b567-ee2c62b96866"
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {
+                "input_file": {
+                    "id": 1, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Filter FASTQ", 
+            "outputs": [
+                {
+                    "name": "output_file", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 412.5, 
+                "top": 456
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_file": {
+                    "action_arguments": {
+                        "newname": "#{input_file | basename}_filtered.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_file"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastq_filter/fastq_filter/1.0.0", 
+            "tool_state": "{\"__page__\": 0, \"max_num_deviants\": \"\\\"0\\\"\", \"paired_end\": \"\\\"False\\\"\", \"input_file\": \"null\", \"__rerun_remap_job_id__\": null, \"min_size\": \"\\\"1\\\"\", \"max_quality\": \"\\\"0.0\\\"\", \"min_quality\": \"\\\"8.0\\\"\", \"max_size\": \"\\\"0\\\"\", \"fastq_filters\": \"[]\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "515f36c5-9367-4a6f-98bf-dd2532ff30d5"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {
+                "input": {
+                    "id": 2, 
+                    "output_name": "output_file"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "FASTQ Collapser", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "fasta"
+                }
+            ], 
+            "position": {
+                "left": 415.41668701171875, 
+                "top": 573.41667175292969
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "#{input | basename}_collapsed.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "fastq collapser", 
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "456d2d6d-7312-4b8e-9562-462c473a7956"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {
+                "singlePaired|sInput1": {
+                    "id": 3, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Enhanced Bowtie Mapper", 
+            "outputs": [
+                {
+                    "name": "outputM", 
+                    "type": "map"
+                }, 
+                {
+                    "name": "outputS", 
+                    "type": "sam"
+                }, 
+                {
+                    "name": "output_suppressed_reads_l", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "output_suppressed_reads_r", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "output_unmapped_reads_l", 
+                    "type": "fastq"
+                }, 
+                {
+                    "name": "output_unmapped_reads_r", 
+                    "type": "fastq"
+                }
+            ], 
+            "position": {
+                "left": 382.54998779296875, 
+                "top": 702.04998779296875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/kaymccoy/enhanced_bowtie_mapper/bowtie_mapper/1.1.3", 
+            "tool_state": "{\"suppressHeader\": \"\\\"False\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"refGenomeSource\": \"{\\\"genomeSource\\\": \\\"history\\\", \\\"ownFile\\\": null, \\\"__current_case__\\\": 1, \\\"indexParams\\\": {\\\"indexSettings\\\": \\\"indexPreSet\\\", \\\"__current_case__\\\": 0}}\", \"singlePaired\": \"{\\\"sInput1\\\": null, \\\"sParams\\\": {\\\"sForwardAlign\\\": \\\"forward\\\", \\\"sTrimH\\\": \\\"0\\\", \\\"sTrimL\\\": \\\"0\\\", \\\"sUnmappedFile\\\": \\\"True\\\", \\\"sSettingsType\\\": \\\"full\\\", \\\"filetype\\\": \\\"f\\\", \\\"sSuppressAlign\\\": \\\"1\\\", \\\"sAlignLimit\\\": \\\"-1\\\", \\\"sMaxFile\\\": \\\"False\\\", \\\"outtype\\\": \\\"M\\\", \\\"sReverseAlign\\\": \\\"reverse\\\", \\\"__current_case__\\\": 1, \\\"sSkip\\\": \\\"0\\\", \\\"sBestOption\\\": {\\\"sTryHardOption\\\": {\\\"sTryHard\\\": \\\"doTryHard\\\", \\\"__current_case__\\\": 1}, \\\"sdStrata\\\": \\\"noStrata\\\", \\\"sBest\\\": \\\"doBest\\\", \\\"__current_case__\\\": 1}, \\\"alignModeOption\\\": {\\\"sMismatchSeed\\\": \\\"1\\\", \\\"sMismatchQual\\\": \\\"70\\\", \\\"sRounding\\\": \\\"round\\\", \\\"__current_case__\\\": 0, \\\"alignMode\\\": \\\"nMode\\\", \\\"sSeedLen\\\": \\\"28\\\"}, \\\"sOffrate\\\": \\\"-1\\\", \\\"sSeed\\\": \\\"-1\\\", \\\"sAllValAlignsOption\\\": {\\\"sAllValAligns\\\": \\\"noAllValAligns\\\", \\\"sValAlign\\\": \\\"1\\\", \\\"__current_case__\\\": 0}}, \\\"sPaired\\\": \\\"single\\\", \\\"__current_case__\\\": 0}\"}", 
+            "tool_version": "1.1.3", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b09a430f-0a2b-4e64-aa6f-1fc30052da6d"
+        }
+    }, 
+    "uuid": "aa312096-0838-4f5c-b5ea-2d33e5a948f1"
+}

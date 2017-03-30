@@ -1,0 +1,78 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "Calculate Fitnesses / Aggregate Fitnesses", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Calculate Fitness", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "csv"
+                }, 
+                {
+                    "name": "output2", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "output3", 
+                    "type": "wig"
+                }
+            ], 
+            "position": {
+                "left": 592.04998779296875, 
+                "top": 186.05000305175781
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/kaymccoy/calculate_fitness/calc_fitness/1.0.0", 
+            "tool_state": "{\"cutoff2\": \"\\\"10.0\\\"\", \"cutoff\": \"\\\"0.0\\\"\", \"ef\": \"\\\"0.0\\\"\", \"el\": \"\\\"0.1\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"maxweight\": \"\\\"75.0\\\"\", \"t2\": \"null\", \"expansion\": \"\\\"250.0\\\"\", \"t1\": \"null\", \"reads\": \"{\\\"uncol\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"normalization\": \"{\\\"genes\\\": null, \\\"calculations\\\": \\\"yes\\\", \\\"__current_case__\\\": 1}\", \"bottle\": \"{\\\"all\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"multiply\": \"{\\\"__current_case__\\\": 0, \\\"choice\\\": \\\"no\\\"}\", \"ref\": \"null\", \"strand\": \"\\\"both\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "d0bd4760-aea2-4549-bda8-e19604968585"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {
+                "blank|txt_blanks": {
+                    "id": 0, 
+                    "output_name": "output2"
+                }, 
+                "input": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Aggregate", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "csv"
+                }
+            ], 
+            "position": {
+                "left": 561.04998779296875, 
+                "top": 468.04998779296875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/kaymccoy/aggregate_fitness/aggregate/1.0.0", 
+            "tool_state": "{\"cutoff\": \"\\\"10.0\\\"\", \"weighted\": \"{\\\"algorithms\\\": \\\"yes\\\", \\\"__current_case__\\\": 2}\", \"__page__\": 0, \"weightceiling\": \"\\\"50.0\\\"\", \"__rerun_remap_job_id__\": null, \"mark\": \"{\\\"certain\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"additionalcsv\": \"[]\", \"blank\": \"{\\\"count\\\": \\\"no\\\", \\\"txt_blanks\\\": null, \\\"__current_case__\\\": 0}\", \"input\": \"null\", \"ref\": \"null\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "95d5f354-8963-4c23-8ddb-6d58f9da576c"
+        }
+    }, 
+    "uuid": "a3d6eef3-4cba-4301-9888-3ff341503507"
+}

@@ -1,0 +1,203 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "MmeI Tn-Seq Prep Pt.2", 
+    "steps": {
+        "0": {
+            "annotation": "Sequences ending in the \"TAACAG\" sequence / from the \"trim 4 barcode\" go here", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Trim", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 321.5, 
+                "top": 200
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "#{input1 | basename}_trimmed.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "trimmer", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"end\": \"\\\"-4\\\"\", \"fastq\": \"\\\"-q\\\"\", \"ignore\": \"null\", \"start\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"col\": \"\\\"0\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "9f410150-b0ea-4efd-aae7-07f6058c8369"
+        }, 
+        "1": {
+            "annotation": "Sequences ending in the \"TAACA\" sequence / from the \"trim 3 barcode\" go here", 
+            "id": 1, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Trim", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 340.54998779296875, 
+                "top": 345.04998779296875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "trimmer", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"end\": \"\\\"-3\\\"\", \"fastq\": \"\\\"-q\\\"\", \"ignore\": \"null\", \"start\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"col\": \"\\\"0\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "02e87500-2366-4567-b937-f5a0ffa25aef"
+        }, 
+        "2": {
+            "annotation": "Sequences ending in the \"TAAC\" sequence / from the \"trim 2 barcode\" go here", 
+            "id": 2, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Trim", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 333.04998779296875, 
+                "top": 448.04998779296875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "trimmer", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"end\": \"\\\"-2\\\"\", \"fastq\": \"\\\"-q\\\"\", \"ignore\": \"null\", \"start\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"col\": \"\\\"0\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "cf0153a5-4ae3-48d1-9777-8375ac5f8a22"
+        }, 
+        "3": {
+            "annotation": "Sequences ending in the \"TAA\" sequence / from the \"trim 1 barcode\" go here", 
+            "id": 3, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Trim", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 337.54998779296875, 
+                "top": 600.04998779296875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "trimmer", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"end\": \"\\\"-1\\\"\", \"fastq\": \"\\\"-q\\\"\", \"ignore\": \"null\", \"start\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"col\": \"\\\"0\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "5da6f461-4294-4492-ab5e-0dae849fdc41"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {
+                "input1": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }, 
+                "queries_0|input2": {
+                    "id": 1, 
+                    "output_name": "out_file1"
+                }, 
+                "queries_1|input2": {
+                    "id": 2, 
+                    "output_name": "out_file1"
+                }, 
+                "queries_2|input2": {
+                    "id": 3, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Concatenate datasets", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 329.5, 
+                "top": 774
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "#{input1 | basename}_cat.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "cat1", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"null\", \"queries\": \"[{\\\"input2\\\": null, \\\"__index__\\\": 0}, {\\\"input2\\\": null, \\\"__index__\\\": 1}, {\\\"input2\\\": null, \\\"__index__\\\": 2}]\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "f8758f95-807d-4475-950b-6685da31ee6a"
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {
+                "input": {
+                    "id": 4, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Barcode Splitter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 344.41668701171875, 
+                "top": 998.9166259765625
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/fastx_barcode_splitter_enhanced/cshl_princeton_fastx_barcode_splitter/1.1", 
+            "tool_state": "{\"__page__\": 0, \"mismatches\": \"\\\"1\\\"\", \"partial\": \"\\\"1\\\"\", \"refBarcodeLocation\": \"{\\\"barcodeLocation\\\": \\\"bol\\\", \\\"__current_case__\\\": 0, \\\"EOL\\\": \\\"--bol\\\"}\", \"BARCODE\": \"null\", \"input\": \"null\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "1.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "0e327089-a3da-4888-8041-507d6a60c87b"
+        }
+    }, 
+    "uuid": "6ada066b-cc38-48ef-8a8b-e980d0e3e3f1"
+}

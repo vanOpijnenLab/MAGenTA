@@ -1,0 +1,167 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "MmeI Tn-Seq Prep Pt.1", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Trim", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 491.08331298828125, 
+                "top": 255
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionout_file1": {
+                    "action_arguments": {
+                        "newname": "#{input1 | basename}_trimmed.fastq"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "trimmer", 
+            "tool_state": "{\"__page__\": 0, \"input1\": \"null\", \"end\": \"\\\"-17\\\"\", \"fastq\": \"\\\"-q\\\"\", \"ignore\": \"null\", \"start\": \"\\\"10\\\"\", \"__rerun_remap_job_id__\": null, \"col\": \"\\\"0\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b2b55c9a-e6a5-46d8-a897-3ee8ff2ad438"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Barcode Splitter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 200, 
+                "top": 393.41668701171875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/fastx_barcode_splitter_enhanced/cshl_princeton_fastx_barcode_splitter/1.1", 
+            "tool_state": "{\"__page__\": 0, \"mismatches\": \"\\\"1\\\"\", \"partial\": \"\\\"0\\\"\", \"refBarcodeLocation\": \"{\\\"barcodeLocation\\\": \\\"eol\\\", \\\"__current_case__\\\": 1, \\\"EOL\\\": \\\"--eol\\\"}\", \"BARCODE\": \"null\", \"input\": \"null\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "1.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "50b0e491-e584-4dd1-92a3-9a92302252fb"
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Barcode Splitter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 374, 
+                "top": 395.41668701171875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/fastx_barcode_splitter_enhanced/cshl_princeton_fastx_barcode_splitter/1.1", 
+            "tool_state": "{\"__page__\": 0, \"mismatches\": \"\\\"1\\\"\", \"partial\": \"\\\"0\\\"\", \"refBarcodeLocation\": \"{\\\"barcodeLocation\\\": \\\"eol\\\", \\\"__current_case__\\\": 1, \\\"EOL\\\": \\\"--eol\\\"}\", \"BARCODE\": \"null\", \"input\": \"null\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "1.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "2cb8ba6e-e32a-4aa0-860b-d52f4b3178d3"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Barcode Splitter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 569, 
+                "top": 398.41668701171875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/fastx_barcode_splitter_enhanced/cshl_princeton_fastx_barcode_splitter/1.1", 
+            "tool_state": "{\"__page__\": 0, \"mismatches\": \"\\\"1\\\"\", \"partial\": \"\\\"0\\\"\", \"refBarcodeLocation\": \"{\\\"barcodeLocation\\\": \\\"eol\\\", \\\"__current_case__\\\": 1, \\\"EOL\\\": \\\"--eol\\\"}\", \"BARCODE\": \"null\", \"input\": \"null\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "1.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "2bc77afd-b97a-45dd-b652-9aaad8c5e695"
+        }, 
+        "4": {
+            "annotation": "the barcode \"TAA\" should go here; all others can go in whatever order you like", 
+            "id": 4, 
+            "input_connections": {
+                "input": {
+                    "id": 0, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Barcode Splitter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "html"
+                }
+            ], 
+            "position": {
+                "left": 753, 
+                "top": 404.41668701171875
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/fastx_barcode_splitter_enhanced/cshl_princeton_fastx_barcode_splitter/1.1", 
+            "tool_state": "{\"__page__\": 0, \"mismatches\": \"\\\"0\\\"\", \"partial\": \"\\\"0\\\"\", \"refBarcodeLocation\": \"{\\\"barcodeLocation\\\": \\\"eol\\\", \\\"__current_case__\\\": 1, \\\"EOL\\\": \\\"--eol\\\"}\", \"BARCODE\": \"null\", \"input\": \"null\", \"__rerun_remap_job_id__\": null}", 
+            "tool_version": "1.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "871ac9b1-d039-4e9e-bb31-0f59e1227587"
+        }
+    }, 
+    "uuid": "7b3be465-abf0-4d95-9794-948fe9ca3591"
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="perl" version="5.18.1">
+         <repository name="package_perl_5_18" owner="iuc" prior_installation_required="True" />
+    </package>
+    <package name="bioperl" version="1.6.922">
+        <repository  name="package_bioperl_1_6" owner="iuc" />
+    </package>
+    <package name="perl_data_random" version="0.12">
+        <repository  name="package_perl_datarandom" owner="antmarge" />
+    </package>
+    <package name="perl_getopt_long" version="2.45" >
+	<repository name="package_perl_getoptlong" owner="antmarge" />
+    </package>
+    <package name="perl_list_binarysearch" version="0.25">
+	<repository name="package_perl_list_binarysearch" owner="antmarge" />
+    </package>
+</tool_dependency>

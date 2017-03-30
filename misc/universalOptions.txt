@@ -1,0 +1,6 @@
+'d:s' => \$indir,
+'h' => \$h,
+'o:s' =>\$out,
+'s:i' => \$sortkey,
+'r:i'=> \$round,
+'l:s'=> \$l,

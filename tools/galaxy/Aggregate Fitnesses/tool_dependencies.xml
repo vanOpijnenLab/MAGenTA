@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="biopython" version="1.64">
+        <repository changeset_revision="b64c8edb7e45" name="package_biopython_1_64" owner="biopython" toolshed="https://toolshed.g2.bx.psu.edu" />
+    </package>
+</tool_dependency>

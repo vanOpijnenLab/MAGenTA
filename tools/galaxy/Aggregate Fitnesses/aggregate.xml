@@ -1,0 +1,102 @@
+<tool id="aggregate" name="Aggregate">
+  <description>fitness calculations by gene</description>
+  <requirements>
+    <requirement type="package" version="1.64">biopython</requirement>
+  </requirements>
+  <command interpreter="python">
+    aggregate.py 
+    #if $mark.certain  == "yes":
+      -m $mark.genes
+    #end if
+    #if $weighted.algorithms == "yes":
+      -w 1 
+    #end if
+    -x $cutoff 
+    -l $weightceiling 
+    #if $blank.count  == "yes":
+      -b $blank.custom_blanks
+    #end if
+    #if $blank.count  == "no":
+      -f $blank.txt_blanks
+    #end if
+    -c $ref
+    -o $output 
+    $input
+    #for $a in $additionalcsv
+      ${a.input2}
+    #end for
+  </command>
+  <inputs>
+    <param name="input" type="data" label="csv fitness file"/>
+      <repeat name="additionalcsv" title="Additional csv fitness file(s)">
+        <param name="input2" type="data" label="Select" />
+      </repeat>
+    <param name="ref" type="data" label="GenBank reference genome"/>
+    <conditional name="mark">
+      <param name="certain" type="select" label="Mark certain genes?">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </param>
+      <when value="no">
+        <!-- do nothing -->
+      </when>
+      <when value="yes"> 
+        <param name="genes" type="data" label="Genes to mark" />
+      </when>
+    </conditional>
+    <conditional name="weighted">
+      <param name="algorithms" type="select" label="Use weighted algorithms?">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </param>
+      <when value="-w 1 "/>
+      <when value=""/>
+    </conditional>
+    <param name="weightceiling" type="float" value="50.0" label="Weight ceiling"/>
+    <param name="cutoff" type="float" value="10.0" label="Cutoff3"/>
+    <conditional name="blank">
+      <param name="count" type="select" label="Enter custom bottleneck correction value?">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </param>
+      <when value="no">
+        <param name="txt_blanks" type="data" label="txt output from Calc_fit or Consol_fit"/>
+      </when>
+      <when value="yes"> 
+        <param name="custom_blanks" type="float" value="0.0" label="blank count (a number from 0.0 to 1.0)"/>
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output" format="csv"/>
+  </outputs>
+  <help>
+
+**What it does**
+
+This tool calculates the aggregate fitness values of  mutations by gene.
+
+**The options explained**
+
+The csv fitness file(s): These are the csv (comma separated values) files containing the fitness values you want to aggregate by gene. Since they should have been produced by the "Calculate Fitness" tool, each line besides the header should represent the following information for an insertion location: position,strand,count_1,count_2,ratio,mt_freq_t1,mt_freq_t2,pop_freq_t1,pop_freq_t2,gene,D,W,nW
+
+GenBank reference genome: the reference genome of whatever model you're working with, which needs to be in standard genbank format. For more on that format see the genbank website.
+
+Marking certain genes: If you chose to mark certain genes, those genes will have an "M" under the M column of the resulting aggregate file. 
+
+Using weighted algorithms: Recommended. If you chose to use weighted algorithms, scores will be weighted by the number of reads their insertion location has, as insertions with more reads tend to be more accurate.
+
+Weight ceiling: This value lets you set a weight ceiling for the weights of fitness values. It's only relevant if you're using weighted algorithms.
+
+Cutoff3: This value lets you ignore the fitness scores of any insertion locations with an average count (the number of counts from t1 and t2 divided by 2) less than it.
+
+Bottleneck value: The percentage of insertions randomly lost, which will be discounted for all genes (for example, 20% would be entered as 0.20; default 0 if entered by hand). You can just use the blank % calculated from the normalization genes by calc_fit by entering its txt output file
+
+The name of your output file: self-explanatory. Remember to have it end in ".csv".
+
+**Additional notes**
+
+The output file should have each line (besides the header) represent the following information for a particular gene: locus,mean,var,sd,se,gene,Total,Blank,Not Blank,Blank Removed,M
+    
+</help>
+</tool>

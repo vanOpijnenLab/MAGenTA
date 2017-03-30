@@ -1,0 +1,55 @@
+<tool id="compRegions" name="Compare Regions" version="0.1.0">
+    
+    <!-- Margaret Antonio  17.01.08 -->
+
+    <description> compare regional aggregate fitness from two different experiments</description>
+    
+    <requirements>
+        <requirement type="package" version="5.18.1">perl</requirement>
+        <requirement type="package" version="1.0">perl_getopt_long</requirement>
+        <requirement type="package" version="1.02">perl_statistics_distributions</requirement>
+        <requirement type="package" version="2.121">perl_data_dumper</requirement>
+    </requirements>
+    
+    <command interpreter="perl">
+        compRegions.pl
+        -input1 $input1
+        -input2 $input2
+        -l1 $l1
+        -l2 $l2
+        -o $outfile
+    </command>
+    
+    <inputs>
+        <param name="input1" type="data" label="csv region aggregate fitness file #1"/>
+        <param name="input2" type="data" label="csv region aggregate fitness file #2"/>
+        <param name="l1" type="text" value ="input1" label="Label for input #1"/>
+        <param name="l2" type="text" value ="input2" label="Label for input #2"/>
+        <param name="o" type="text" value ="outputRegionComp" label="Name output file"/>
+        
+        
+    </inputs>
+    
+    <outputs>
+        <data format="csv" name="outfile"  />
+    </outputs>
+    
+    <help>
+        **What it does**
+        
+        This tool compares regions for an organism under different conditions. It takes two Region Fitness outputs and compares them calculating the difference in mean fitness for each gene. Example usage: compare organism in presence of control vs antibiotic. ;
+        
+        
+        **The options explained**
+        
+        Input 1 and 2: These are the csv (comma separated values) files containing the gene fitness values. Since they should have been produced by the "Aggregate Fitness" tool, each line besides the header should represent the following information for a gene: Locus, Fitness, NumberofInsertions, StandardDev of insertion fitness, Standard Error of insertion fitness, and Marking
+        
+        Label 1 and 2: Labels for the column headers for files in the comparison
+        
+        
+        The name of your output file: self-explanatory. Remember to have it end in ".csv".
+        
+        
+    </help>
+    
+</tool>

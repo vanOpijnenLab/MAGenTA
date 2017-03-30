@@ -1,0 +1,52 @@
+<!-- Margaret Antonio  17.01.08 -->
+
+<tool id="singleFitness" name="Single Fitness" version="0.1.0">
+    <requirements>
+	<!--<requirement type="set_environment">LINKYX_PATH</requirement>-->
+        <requirement type="package" version="5.18.1">perl</requirement>
+        <requirement type="package" version="1.6.922">bioperl</requirement>
+        <requirement type="package" version="2.45">perl_getopt_long</requirement>
+    </requirements>
+    <description>assess single insertion mutation effect on organismal fitness</description>
+    
+    <command interpreter="perl">
+        singleFitness.pl
+        -c $cutoff
+        -o $outfile
+        
+        $input
+        #for $a in $additionalcsv
+        ${a.input2}
+        #end for
+        
+    </command>
+    
+    <inputs>
+        <param name="input" type="data" label="CSV Fitness File(s)"/>
+        <repeat name="additionalcsv" title="Additional csv fitness file(s)">
+            <param name="input2" type="data" label="Select" />
+        </repeat>
+        <param name="cutoff" type="integer" value="10" label="Cutoff"/>
+        <param name="out" type="text" value="singleVal.csv" label="Name of output file"/>
+    
+    </inputs>
+    
+    <outputs>
+        <data format="csv" name="outfile"  />
+    </outputs>
+    
+    <help>
+        **Tool Description**
+        
+        This tool takes calculates a single insertion mutation's fitness effect on an organism based on fitness calculation data from multiple libraries.
+        
+        **Options**
+        
+        *The csv fitness file(s)*: These are the csv (comma separated values) files containing the fitness values that will be used in downstream analyses. Since they should have been produced by the "Calculate Fitness" tool, each line besides the header should represent the following information for an insertion location: position,strand,count_1,count_2,ratio,mt_freq_t1,mt_freq_t2,pop_freq_t1,pop_freq_t2,gene,D,W,nW
+        
+        
+        *Cutoff*: This value lets you ignore the fitness scores of any insertion locations with an average count (the number of counts from t1 and t2 divided by 2) less than it.
+        
+    </help>
+    
+</tool>
