@@ -6,3 +6,11 @@ Each directory contains the results files from the Calculate Fitness tool. There
 
 #### Where to find corresponding genome files
 Corresponding genome files for the two strains shown in these data files are located in the genome directory. Genome files include: Fasta, Genbank, and Gene files for both Taiwan-19F and TIGR4 strains.
+
+#### Download and decompress tar.gz files
+Each strain-comparison directory is compressed. Download the tar.gz file and double click the file to uncompress or uncompress the file in the terminal with:
+
+```
+tar -zxvf archive_name.tar.gz
+```
+
