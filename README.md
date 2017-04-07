@@ -9,7 +9,7 @@ This repository contains tools and documentation for Transposon-Sequencing (Tn-S
 - Van Opijnen, T., Dedrick, S., & Bento, J. (2016). Strain Dependent Genetic Networks for Antibiotic-Sensitivity in a Bacterial Pathogen with a Large Pan-Genome. PLoS Pathogens, 12(9), e1005869. http://doi.org/10.1371/journal.ppat.1005869 [Pubmed](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5015961/)
 
 ### MAGenTA Manual
-See documentation/magentaManual.pdf for the full manual. This manual will help you to process data from either of these methods and with a little imagination probably any other variation you may us###   
+See documentation/magentaManual.pdf for the full manual. This manual will help you to process data from either of these methods and with a little imagination probably any other variation you may use.
 
 ### MAGenTA Tools
 See tools/ for command-line and galaxy tools as well as workflows for galaxy. As described in the full manual, all tools are implemented in the galaxy public tool shed and available for download there.
