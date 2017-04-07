@@ -1,4 +1,4 @@
-# An Overview of the Manual Contents
+<center> # An Overview of the Manual Contents</center>
 
 ## 1 An Overview of Tn-Seq 
 ## 2 The Files You’ll Need 
@@ -24,12 +24,12 @@
 - 4.B.iv SingleFitness
 - 4.B.v RegionFitness
 ### 4.C DataMiningandComparativeAnalyses
-#### 4.C.i DataOverview 
-#### 4.C.ii CompareGenes
-#### 4.C.iii CompareStrains
-#### 4.C.iv CompareRegions
+- 4.C.i DataOverview 
+- 4.C.ii CompareGenes
+- 4.C.iii CompareStrains
+- 4.C.iv CompareRegions
 ### 4.D DataVisualizationinR
-#### 4.D.i Multi-track Visualization of Tn-Seq data withG viz
-#### 4.D.ii Single Track Visualization of Tn-Seq Data
-#### 4.D.iii Other Examples of Tn-Seq Data
+- 4.D.i Multi-track Visualization of Tn-Seq data withG viz
+- 4.D.ii Single Track Visualization of Tn-Seq Data
+- 4.D.iii Other Examples of Tn-Seq Data
 ```
