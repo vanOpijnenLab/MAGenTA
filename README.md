@@ -1,5 +1,5 @@
-# <center>MAGenTA -- Microbial Assessment by Genome-wide Tn-Seq Analysis</center>
-#### <center>a suite of tools for Tn-Seq data analysis</center>
+# <center>MAGenTA: Microbial Assessment by Genome-wide Tn-Seq Analysis</center>
+## <center>a suite of tools for Tn-Seq data analysis</center>
 
 ### What is Tn-Seq?
 This repository contains tools and documentation for Transposon-Sequencing (Tn-Seq) data analysis. Tn-Seq combines transposon insertional mutagenesis with high-throughput  sequencing of the transposon insertion sites to identify genes contributing to a function of interest in bacteria. For more information on Tn-Seq as a method, several scientific papers have been published with detailed explanations:
