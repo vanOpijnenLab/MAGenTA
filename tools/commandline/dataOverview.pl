@@ -299,47 +299,9 @@ print OUT "$inscov%\tGenome coverage by insertions (validInsertions/genomeSize)\
 print OUT "$tacov%\tGenome coverage by TA sites (TAsites/genomeSize)\n";
 print OUT "$lg_dist_ta\tLargest distance between TA sites\n";
 print OUT "$lg_dist_ins\tLargest distance between insertions\n";
-print OUT "\n\nOpen Reading Frames\n\n";
 
 #Store everything to be print OUTed in array
 my @table;
-
-#Find open reading frames from fasta file
-local $_  = $fasta;
-my @orfSize;
-my @allc; #numbers of TAs in the ORFS here.
-my $blank=0; #ORFS that don't have any TA sites.
-my $orfCount=0; #keep track of the number of ORFs found.
-my $minSize=0; 
-#Read somewhere that 99 is a good min but there is an annotated 86 bp gene for 19F
-while ( /ATG/g ) {
-   my $start = pos() - 3;
-   if ( /T(?:AA|AG|GA)/g ) {
-     my $stop = pos;
-     my $size=$stop - $start;
-     if ($size>=$minSize){
-		 push (@orfSize,$size);
-		 my $seq=substr ($_, $start, $stop - $start); 
-		 my @ctemp = $seq =~ /$x/g;
-		 my $countTA = @ctemp;
-		 if ($countTA==0){$blank++}
-		 push (@allc,$countTA);  
-		 $orfCount++;  
-	   }
-	}
-}
-
-print OUT "\nORFs based on Fasta sequence and start (ATG) and end (TAA,TAG,TGA) codons\n";
-push (@table,["Set minimum size for an ORF",$minSize]);
-print OUT "$orfCount\tTotal number of ORFs found\n";
-my ($minORF, $maxORF) = minmax(@orfSize);
-print OUT "$minORF\tSmallest ORF\n";
-print OUT "$maxORF\tLargest ORF\n";
-my ($mintaORF,$maxtaORF) = minmax(@allc);
-print OUT "$mintaORF\tFewest # TA sites in an ORF\n";
-print OUT "$maxtaORF\tGreatest # TA sites in an ORF\n";
-print OUT "$blank\tNumber of ORFs that don't have any TA sites\n";
-
 
 print OUT "\nGenes using the genbank annotation file\n\n";
 ###Get genbank file. Find all start and stop for genes
